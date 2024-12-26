@@ -1,0 +1,15 @@
+{
+	"name": "poe2-filter",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"generate": "tspeg src/poe2-filter.tspeg src/parser.ts",
+		"test": "ts-node src/testParser.ts"
+	},
+	"devDependencies": {
+		"@types/node": "^22.10.2",
+		"ts-node": "^10.9.2",
+		"tspeg": "^3.3.2",
+		"typescript": "^5.7.2"
+	}
+}

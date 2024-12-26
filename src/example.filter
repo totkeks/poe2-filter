@@ -1,0 +1,52 @@
+Show
+Rarity Unique
+SetTextColor 175 96 37 255
+SetBorderColor 175 96 37 255
+SetBackgroundColor 53 13 13 255
+PlayAlertSound 3 300
+PlayEffect Brown
+MinimapIcon 1 Brown Star
+SetFontSize 40
+
+Show
+Class "Currency"
+BaseType "Mirror" "Divine" "Perfect Jeweller's Orb"
+SetFontSize 45
+SetTextColor 255 0 0 255
+SetBorderColor 255 0 0 255
+SetBackgroundColor 255 255 255 255
+PlayAlertSound 6 300
+PlayEffect Red
+MinimapIcon 0 Red Star
+
+Show
+BaseType == "Distilled Isolation" "Distilled Suffering"
+SetFontSize 45
+SetTextColor 255 0 0 255
+SetBorderColor 255 0 0 255
+SetBackgroundColor 255 255 255 255
+PlayAlertSound 6 300
+PlayEffect Red
+MinimapIcon 0 Red Star
+
+Show
+AreaLevel >= 70
+StackSize >= 1000
+BaseType == "Gold"
+SetTextColor 255 255 255
+SetBorderColor 255 255 255
+PlayEffect Orange Temp
+
+Show
+AreaLevel < 70
+StackSize >= 500
+BaseType == "Gold"
+SetTextColor 255 255 255
+SetBorderColor 255 255 255
+PlayEffect Orange Temp
+
+Show
+BaseType == "Gold"
+SetTextColor 180 180 180
+SetBorderColor 0 0 0 255
+SetBackgroundColor 0 0 0 180

@@ -1,0 +1,109 @@
+FILTER := blocks=BLOCK+ $
+
+BLOCK :=
+	visibility=VISIBILITY
+	NL
+	conditions=CONDITION+
+	actions=ACTION*
+	NL*
+
+VISIBILITY := 'Show' | 'Hide'
+
+// Conditions
+// ----------
+CONDITION := type=CONDITION_TYPE _ operator={OPERATOR _}? value=VALUE_LIST NL
+
+VALUE_LIST := {MULTI_VALUE | SINGLE_VALUE}
+
+SINGLE_VALUE := NUMBER | STRING | QUOTED_STRING
+
+MULTI_VALUE := QUOTED_STRING {_ QUOTED_STRING}+
+
+CONDITION_TYPE :=
+	'Rarity' |
+	'Class' |
+	'BaseType' |
+	'AreaLevel' |
+	'StackSize'
+
+OPERATOR := '==' | '<=' | '>=' | '!=' | '=' | '!' | '<' | '>'
+VALUE := {NUMBER | STRING | QUOTED_STRING}
+NUMBER := '[0-9]+'
+STRING := '[a-zA-Z0-9]+'
+QUOTED_STRING := '"[^"]*"'
+
+// Actions
+// -------
+ACTION := action={
+	COLOR_ACTION |
+	FONT_ACTION |
+	SOUND_ACTION |
+	EFFECT_ACTION |
+	ICON_ACTION }
+	NL
+
+COLOR_ACTION :=
+    action={'SetTextColor' | 'SetBorderColor' | 'SetBackgroundColor'}
+    _
+    color=RGBA_VALUE
+
+FONT_ACTION :=
+    'SetFontSize'
+    _
+    size=NUMBER
+
+SOUND_ACTION :=
+    'PlayAlertSound'
+    _
+    NUMBER
+    _
+    NUMBER
+
+EFFECT_ACTION :=
+    'PlayEffect'
+    _
+    COLOR_NAME
+	 {_ 'Temp'}?
+
+ICON_ACTION :=
+    'MinimapIcon'
+    _
+    NUMBER
+    _
+    COLOR_NAME
+    _
+    SHAPE
+
+COLOR_NAME :=
+    'Red' |
+    'Green' |
+    'Blue' |
+    'Brown' |
+    'White' |
+    'Yellow' |
+    'Cyan' |
+    'Grey' |
+    'Orange' |
+    'Pink' |
+    'Purple'
+
+SHAPE :=
+    'Circle' |
+    'Diamond' |
+    'Hexagon' |
+    'Square' |
+    'Star' |
+    'Triangle' |
+    'Cross' |
+    'Moon' |
+    'Raindrop' |
+    'Kite' |
+    'Pentagon' |
+    'UpsideDownHouse'
+
+RGBA_VALUE := red=RGB_NUMBER _ green=RGB_NUMBER _ blue=RGB_NUMBER _? alpha=RGB_NUMBER?
+// TODO: Add a check for the range of the values
+RGB_NUMBER := '[0-9]+'
+
+_ := ' '
+NL := '\n\r?'
